@@ -1,5 +1,7 @@
 import os
-from flask import Flask, render_template, session, redirect, url_for
+from datetime import datetime
+
+from flask import Flask, render_template, session, redirect, url_for, request, current_app
 
 from flask_script import Manager
 from flask_bootstrap import Bootstrap
@@ -7,7 +9,6 @@ from flask_wtf import FlaskForm
 from flask_sqlalchemy import SQLAlchemy
 from flask_script import Shell
 from flask_migrate import Migrate, MigrateCommand
-
 
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
@@ -20,6 +21,7 @@ app.config['SECRET_KEY'] = 'word2vec!dem0'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'data.sqlite')
 app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['TEXTS_PER_PAGE'] = 20
 
 manager = Manager(app)
 bootstrap = Bootstrap(app)
@@ -44,6 +46,7 @@ class Text(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     text = db.Column(db.Text)
     sentences = db.relationship('Sentence', backref='text')
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
 
     def classify_themes(self):
         predictions = classifier.predict(self.text)
@@ -51,7 +54,7 @@ class Text(db.Model):
             sentence = Sentence(sentence=prediction['sentence'])
             self.sentences.append(sentence)
             themes = [Theme(theme=theme, score=score) for theme, score in prediction['themes']]
-            sentence.themes.append(themes)
+            sentence.themes.extend(themes)
 
     def __repr__(self):
         return '<Text: {}>'.format(self.text)
@@ -118,11 +121,13 @@ def classify_text():
     return render_template('classify.html', form=form, text=text)
 
 
-# TODO Develop into returning all previous results
-@app.route('/history', methods=['GET', 'POST'])
-def classify_text():
-
-    return render_template('classify.html', form=form, text=text)
+@app.route('/history')
+def classification_history():
+    page = request.args.get('page', type=int)
+    pagination = Text.query.order_by(Text.timestamp.desc()).paginate(
+        page, per_page=current_app.config['TEXTS_PER_PAGE'], error_out=False)
+    texts = pagination.items
+    return render_template('history.html', texts=texts, pagination=pagination)
 
 
 if __name__ == '__main__':

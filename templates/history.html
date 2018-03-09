@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% import "_macros.html" as macros %}
+
+{% block title %}Text Classification - History{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <h1>Text classification history</h1>
+</div>
+
+{% for text in texts %}
+    {% if text %}
+        <h3 class="section">Source text</h3>
+        <p>{{ text.text }}</p>
+    {% endif %}
+
+    {% if text.sentences %}
+        <h3 class="section">Sentences and classification</h3>
+        {% include '_sentences.html' %}
+    {% endif %}
+{% endfor %}
+
+<div class="pagination">
+    {{ macros.pagination_widget(pagination, '.classification_history') }}
+</div>
+
+{% endblock %}
