@@ -28,9 +28,14 @@ bootstrap = Bootstrap(app)
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
-app.config['MODEL'] = 'data/lbg_culture_prop_w2v_cg,d300,n5,w10,mc2,s0.001,t4'
-app.config['MODEL_PHRASER'] = 'data/culture_prop_phraser_bigram-npmi'
-app.config['MODEL_THEMES'] = 'data/LBG Culture - Sample Dictionary - Semantic v4.1.xlsx'
+# app.config['MODEL'] = 'data/lbg_culture_prop_w2v_cg,d300,n5,w10,mc2,s0.001,t4'
+# app.config['MODEL_PHRASER'] = 'data/culture_prop_phraser_bigram-npmi'
+# app.config['MODEL_THEMES'] = 'data/LBG Culture - Sample Dictionary - Semantic v4.1.xlsx'
+
+app.config['MODEL'] = 'data/banking/banking_survey_w2v_cg,d300,n5,w10,mc2,s0.001,t4'
+app.config['MODEL_PHRASER'] = 'data/banking/banking_survey_phraser_bigram-npmi'
+app.config['MODEL_THEMES'] = 'data/banking/Banking - Test Dictionary.xlsx'
+
 classifier = ThemeClassifier(app.config['MODEL'], app.config['MODEL_PHRASER'], app.config['MODEL_THEMES'])
 
 
