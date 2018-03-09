@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Text Classification{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <h1>Text classification <span class="badge">Alpha version</span></h1>
+</div>
+
+{{ wtf.quick_form(form) }}
+
+{% if text %}
+    <h3 class="section">Source text</h3>
+    <p>{{ text.text }}</p>
+{% endif %}
+
+{% if text.sentences %}
+    <h3 class="section">Sentences and classification</h3>
+    {% include '_sentences.html' %}
+{% endif %}
+
+{% endblock %}

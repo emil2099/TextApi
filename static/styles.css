@@ -1,0 +1,24 @@
+ul.sentences{
+	list-style-type: none;
+	padding: 0px;
+	margin: 1px solid #e0e0e0;
+}
+
+ul.sentences li.sentence{
+	padding: 0px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #e0e0e0;
+}
+
+ul.sentences li.sentence:hover {
+    background-color: #f0f0f0;
+}
+
+h3.theme {
+    margin-top: 5px;
+}
+
+h3.section {
+    border-bottom: 1px solid #e0e0e0;
+}
