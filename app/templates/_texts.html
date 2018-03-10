@@ -1,0 +1,21 @@
+{% if text %}
+    <h3 class="section">Source text</h3>
+    <p>{{ text.text }}</p>
+{% endif %}
+
+{% if text.sentences %}
+    <h3 class="section">Sentences and classification</h3>
+    <ul class="sentences">
+        {% for sentence in text.sentences %}
+        <li class="sentence">
+            {{ sentence.sentence }}
+            <h3 class="theme">
+                {% for theme in sentence.themes %}
+                    <span class="label label-success">{{ theme.theme }} <span class="badge">{{ "{:.2f}".format(theme.score) }}</span></span>
+                {% endfor %}
+            </h3>
+        </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+

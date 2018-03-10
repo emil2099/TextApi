@@ -9,15 +9,7 @@
 </div>
 
 {% for text in texts %}
-    {% if text %}
-        <h3 class="section">Source text</h3>
-        <p>{{ text.text }}</p>
-    {% endif %}
-
-    {% if text.sentences %}
-        <h3 class="section">Sentences and classification</h3>
-        {% include '_sentences.html' %}
-    {% endif %}
+    {% include '_texts.html' %}
 {% endfor %}
 
 <div class="pagination">

@@ -10,16 +10,8 @@
 
 {{ wtf.quick_form(form) }}
 
-{% if text %}
-    <h3 class="section">Source text</h3>
-    <p>{{ text.text }}</p>
-{% endif %}
+{% include '_texts.html' %}
 
-{% if text.sentences %}
-    <h3 class="section">Sentences and classification</h3>
-    {% include '_sentences.html' %}
-{% endif %}
-
-<br>Look at <a href="/history">previous submissions</a>
+<br>Review <a href="/history">previous submissions</a>
 
 {% endblock %}
