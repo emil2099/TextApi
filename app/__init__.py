@@ -9,7 +9,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate, MigrateCommand
 
 from app.classifier.theme_classification import ThemeClassifier
-from config import Config
+from config import config
 
 
 from flask_script import Shell
@@ -26,9 +26,10 @@ MODEL_THEMES = 'app/data/banking/Banking - Test Dictionary.xlsx'
 classifier = ThemeClassifier(MODEL, MODEL_PHRASER, MODEL_THEMES)
 
 
-def create_app(config_class=Config):
+def create_app(config_name):
     app = Flask(__name__)
-    app.config.from_object(config_class)
+    app.config.from_object(config[config_name])
+    config[config_name].init_app(app)
 
     db.init_app(app)
     migrate.init_app(app, db)
