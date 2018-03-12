@@ -42,10 +42,16 @@ class ProductionConfig(Config):
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
         'sqlite:///' + os.path.join(basedir, 'data.sqlite')
 
+
+class ElasticBeanstalkConfig(Config):
+    SQLALCHEMY_DATABASE_URI = os.environ.get('SQLALCHEMY_DATABASE_URI') or \
+        'sqlite:///' + os.path.join(basedir, 'data.sqlite')
+
 config = {
     'development': DevelopmentConfig,
     'testing': TestingConfig,
     'production': ProductionConfig,
+    'beanstalk': ElasticBeanstalkConfig,
 
     'default': DevelopmentConfig
 }

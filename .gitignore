@@ -5,6 +5,11 @@
 data/
 *.sqlite
 
+# Project stuff
+.env
+logs/
+sample_sentence
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -55,5 +60,13 @@ coverage.xml
 
 # Sphinx documentation
 docs/_build/
-.env
-logs/
+
+
+# Elastic Beanstalk Files
+
+.elasticbeanstalk/*
+
+!.elasticbeanstalk/*.cfg.yml
+
+!.elasticbeanstalk/*.global.yml
+
