@@ -12,7 +12,6 @@ from app.classifier.theme_classification import ThemeClassifier
 from config import config
 
 
-from flask_script import Shell
 from flask_script import Manager
 manager = Manager()  # TODO is this needed
 
@@ -35,13 +34,11 @@ def create_app(config_name):
     migrate.init_app(app, db)
     bootstrap.init_app(app)
 
-    from app.main import main as main_blueprint
-    app.register_blueprint(main_blueprint)
+    from app.main import main
+    app.register_blueprint(main)
 
-    if not app.debug and not app.testing:
-        if not os.path.exists('logs'):
-            os.mkdir('logs')
-        file_handler=RotatingFileHandler('logs/textapi.log', maxBytes=10240, backupCount=10)
+    if config_name == 'beanstalk':
+        file_handler=RotatingFileHandler('/opt/python/log/my.log', maxBytes=10240, backupCount=10)
         file_handler.setFormatter(logging.Formatter(
             '%(asctime)s %(levelname)s: %(message)s '
             '[in %(pathname)s:%(lineno)d]'))
