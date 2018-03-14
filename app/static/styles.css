@@ -1,4 +1,4 @@
-ul.sentences{
+ul.sentences {
 	list-style-type: none;
 	padding: 0px;
 	margin: 1px solid #e0e0e0;
@@ -21,4 +21,8 @@ h3.theme {
 
 h3.section {
     border-bottom: 1px solid #e0e0e0;
+}
+
+.container.body {
+    padding-top: 30px
 }
