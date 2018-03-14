@@ -11,7 +11,7 @@
             {{ sentence.sentence }}
             <h3 class="theme">
                 {% for theme in sentence.themes %}
-                    <span class="label label-success">{{ theme.theme }} <span class="badge">{{ "{:.2f}".format(theme.score) }}</span></span>
+                    <button type="button" class="btn btn-success">{{ theme.theme }} <span class="badge badge-light">{{ "{:.2f}".format(theme.score) }}</span></button>
                 {% endfor %}
             </h3>
         </li>
