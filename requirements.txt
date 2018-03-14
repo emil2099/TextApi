@@ -15,7 +15,6 @@ dill==0.2.7.1
 docutils==0.14
 dominate==2.3.1
 Flask==0.12.2
-Flask-Bootstrap==3.3.7.1
 git+git://github.com/beenje/flask-bootstrap.git@bootstrap-v4
 Flask-HTTPAuth==3.2.3
 Flask-Login==0.4.1
