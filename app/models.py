@@ -1,5 +1,5 @@
 from datetime import datetime
-from app import db, classifier
+from app import db, classifier, sentiment
 
 
 class Text(db.Model):
@@ -12,7 +12,8 @@ class Text(db.Model):
     def classify_themes(self):
         predictions = classifier.predict(self.text)
         for prediction in predictions:
-            sentence = Sentence(sentence=prediction['sentence'])
+            sentence = Sentence(sentence=prediction['sentence'],
+                                sentiment=sentiment.polarity_scores(prediction['sentence'])['compound'])
             self.sentences.append(sentence)
             themes = [Theme(theme=theme, score=score) for theme, score in prediction['themes']]
             sentence.themes.extend(themes)
@@ -25,6 +26,7 @@ class Sentence(db.Model):
     __tablename__ = 'sentences'
     id = db.Column(db.Integer, primary_key=True)
     sentence = db.Column(db.Text)
+    sentiment = db.Column(db.Float)
     text_id = db.Column(db.Integer, db.ForeignKey('texts.id'))
     themes = db.relationship('Theme', backref='sentence')
 

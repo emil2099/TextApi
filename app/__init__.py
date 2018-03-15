@@ -9,6 +9,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate, MigrateCommand
 
 from app.classifier.theme_classification import ThemeClassifier
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 from config import config
 
 
@@ -23,6 +24,7 @@ MODEL = 'app/data/banking/banking_survey_w2v_cg,d300,n5,w10,mc2,s0.001,t4'
 MODEL_PHRASER = 'app/data/banking/banking_survey_phraser_bigram-npmi'
 MODEL_THEMES = 'app/data/banking/Banking - Test Dictionary.xlsx'
 classifier = ThemeClassifier(MODEL, MODEL_PHRASER, MODEL_THEMES)
+sentiment = SentimentIntensityAnalyzer()
 
 
 def create_app(config_name):
