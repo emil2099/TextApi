@@ -4,7 +4,6 @@
 
 {% block head %}
 {{ super() }}
-
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
 {% endblock %}
 
@@ -14,9 +13,11 @@
     ('/history', 'history', 'History')
 ] -%}
 
-<nav class="navbar navbar-expand-lg bg-primary navbar-dark">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
-        <a class="navbar-brand" href="/">Text API</a>
+        <a class="navbar-brand" href="/">
+            <img src="{{ url_for('static', filename='logo.svg') }}">
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
