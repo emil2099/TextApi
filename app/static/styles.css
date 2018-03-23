@@ -8,7 +8,6 @@ ul.sentences li.sentence{
 	padding: 0px;
 	padding-top: 10px;
 	padding-bottom: 10px;
-	border-bottom: 1px solid #e0e0e0;
 }
 
 ul.sentences li.sentence:hover {
@@ -17,6 +16,7 @@ ul.sentences li.sentence:hover {
 
 h3.theme {
     margin-top: 5px;
+
 }
 
 h3.section {
@@ -24,5 +24,22 @@ h3.section {
 }
 
 .container.body {
-    padding-top: 30px
+    padding-top: 70px
+}
+
+.container {
+    font-family: 'Roboto', sans-serif;
+}
+
+.body {
+
+}
+
+.page-header {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+h6 {
+    border-bottom: 1px solid #e0e0e0;
 }

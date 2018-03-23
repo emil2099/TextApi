@@ -1,22 +1,78 @@
-{% if text %}
-    <h3 class="section">Source text</h3>
-    <p>{{ text.text }}</p>
-{% endif %}
+<!--{% if text %}
+    <div class="container">
+        <h3 class="section py-3">Source text</h3>
+        <p class="section1">{{ text.text }}</p>
+    </div>
+{% endif %}-->
 
-{% if text.sentences %}
-    <h2 class="section">Sentences and classification</h2>
-    <ul class="sentences">
-        {% for sentence in text.sentences %}
-        <li class="sentence">
-            {{ sentence.sentence }}
-            <h3 class="theme">
-                {% for theme in sentence.themes %}
-                    <button type="button" class="btn btn-success">{{ theme.theme }} <span class="badge badge-light">{{ "{:.2f}".format(theme.score) }}</span></button>
-                {% endfor %}
-            </h3>
-            {{ sentence.sentiment }}
-        </li>
-        {% endfor %}
-    </ul>
-{% endif %}
+<!--{% if text.sentences %}
+    <div class="container">
+        <h3 class="section py-2">Sentences and classification</h3>
+        <ul class="sentences">
+            {% for sentence in text.sentences %}
+            <li class="sentence">
+                {{ sentence.sentence }}
+                <h3 class="theme">
+                    {% for theme in sentence.themes %}
+                        <button type="button" class="btn btn-success">{{ theme.theme }} <span class="badge badge-light">{{ "{:.2f}".format(theme.score) }}</span></button>
+                    {% endfor %}
+                </h3>
+                {{ sentence.sentiment }}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}-->
+
+    <section id=Section1">
+        <div class="container">
+            <!--<div class="row pt-4 align-items-center">-->
+            <div class="row pt-4">
+                <!--<div class="col d-none d-md-block align-self-top">-->
+               <div class="col">
+                   <h6 class="text-uppercase text-black-40">Original</h6>
+                   {% if text %}
+                    <h2>Source text</h2>
+                    <p class="section1">{{ text.text }}</p>
+                   {% endif %}
+               </div>
+            <div class="col">
+                {% if text.sentences %}
+                <h6 class="text-uppercase text-black-40">Results</h6>
+                <h2>Classification and Sentiment</h2>
+                <!--<p>Sed ut perspiciatis unde omnis iste natus error
+                sit voluptatem accusantium doloremque laudantium,
+                totam rem aperiam..</p> -->
+                <!-- columns can be nested -->
+                       <div class="row">
+                         <div class="d-none d-md-block col">
+                            <h5>Themes</h5>
+                              <h3 class="theme">
+                                  <ul class="sentences">
+                                    {% for sentence in text.sentences %}
+                                    <li class="sentence">
+                                        <!--{{ sentence.sentence }}-->
+                                        <h3 class="theme">
+                                            {% for theme in sentence.themes %}
+                                                <button type="button" class="btn btn-success">{{ theme.theme }} <span class="badge badge-light">{{ "{:.2f}".format(theme.score) }}</span></button>
+                                            {% endfor %}
+                                        </h3>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                              </h3>
+                             <!--<a href="#" class="d-block">learn more</a>-->
+                          </div>
+                          <div class="d-none d-lg-block col">
+                             <h5>Sentiment</h5>
+                              <p>{% for sentence in text.sentences %}{{ sentence.sentiment }}{% endfor %}<p>
+                              <!--<a href="#" class="d-block">learn more</a>-->
+                          </div>
+                       </div>
+            {% endif %}
+            </div>
+            </div>
+          </div>
+        </section>
+
 
