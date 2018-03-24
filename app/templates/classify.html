@@ -5,12 +5,18 @@
 {% block title %}Text Classification{% endblock %}
 
 {% block page_content %}
-<div class="container">
+<!--<div class="container"> -->
     <div class="page-header">
         <h1 class="h1 d-inline-block">Text classification</h1><span class="badge badge-pill badge-danger align-top">Alpha</span>
-        <p class="lead">Blah blah blah blah blah blah</p>
+        <p class="lead">Text classification API allows granular analysis of themes and sentiment.</p>
+        <p>Our algorithm is different from your typical theme classifier in a way that allows to quickly define themes and concepts
+        using a few words - no tagging and labelling required. This is is important as training data is often difficult
+        to obtain and training labels don't always match the classification task in hand.</p>
+        <p>In this demo the classifier has been trained to understand the language of banking. It can take customer
+        feedback or complaints and classify them by customer channel, product and root cause</p>
+        <p><strong>Classes covered:</strong> online, mobile, branch, telephony, staff, processes, credit card, debit card, lending, overdraft </p>
     </div>
-</div>
+<!--</div> -->
 {{ wtf.quick_form(form) }}
 
 {% include '_texts.html' %}
