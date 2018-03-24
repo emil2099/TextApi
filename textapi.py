@@ -20,9 +20,19 @@ def test():
     tests = unittest.TestLoader().discover('tests')
     unittest.TextTestRunner(verbosity=2).run(tests)
 
+
 @application.cli.command()
 def deploy():
     """Run deployment tasks."""
     # Migrate database to latest revision
     upgrade()
     print('Deploy')
+
+
+@application.cli.command()
+def clear_data():
+    """Clear data from all tables"""
+    meta = db.metadata
+    for table in reversed(meta.sorted_tables):
+        db.session.execute(table.delete())
+    db.session.commit()
