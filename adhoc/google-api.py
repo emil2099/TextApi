@@ -1,7 +1,6 @@
 import io
 import os
 
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'C:/Users/Ekalimullin/Desktop/Python Projects/flask_api/app/static/speech-to-text-f40318fcbc23.json'
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'C:/Users/Ekalimullin/Desktop/Python Projects/flask_api/app/static/speech-to-text-1543854082123-6553574168d8.json'
 
 # Imports the Google Cloud client library
