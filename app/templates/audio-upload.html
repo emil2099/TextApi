@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% set active_page = "classify" %}
+
+{% block title %}Text Classification{% endblock %}
+
+{% block page_content %}
+<!--<div class="container"> -->
+    <div class="page-header">
+        <h1 class="h1 d-inline-block display">Audio upload</h1><span class="badge badge-pill badge-danger align-top">Alpha</span>
+        <p><strong>File requirements:</strong> Please use WAV files no longer than 1 min and no larger than 16mb for this demo </p>
+    </div>
+<!--</div> -->
+{{ wtf.quick_form(form) }}
+
+{% endblock %}

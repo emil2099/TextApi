@@ -16,6 +16,10 @@ class Config:
     # app.config['MODEL_PHRASER'] = 'data/culture_prop_phraser_bigram-npmi'
     # app.config['MODEL_THEMES'] = 'data/LBG Culture - Sample Dictionary - Semantic v4.1.xlsx'
 
+    # Uploads
+    UPLOADS_DEFAULT_DEST = '/var/uploads'
+
+    # NLP models
     MODEL = 'data/banking/banking_survey_w2v_cg,d300,n5,w10,mc2,s0.001,t4'
     MODEL_PHRASER = 'data/banking/banking_survey_phraser_bigram-npmi'
     MODEL_THEMES = 'data/banking/Banking - Test Dictionary.xlsx'

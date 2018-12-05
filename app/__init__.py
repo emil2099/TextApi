@@ -7,6 +7,7 @@ from flask import Flask
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate, MigrateCommand
+from flask_uploads import UploadSet, configure_uploads, patch_request_class
 
 from app.classifier.theme_classification import ThemeClassifier
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
@@ -19,6 +20,7 @@ manager = Manager()  # TODO is this needed
 bootstrap = Bootstrap()
 db = SQLAlchemy()
 migrate = Migrate()
+audios = UploadSet(name='audios', extensions='wav')
 
 MODEL = 'app/data/banking/banking_survey_w2v_cg,d300,n5,w10,mc2,s0.001,t4'
 MODEL_PHRASER = 'app/data/banking/banking_survey_phraser_bigram-npmi'
@@ -35,6 +37,9 @@ def create_app(config_name):
     db.init_app(app)
     migrate.init_app(app, db)
     bootstrap.init_app(app)
+
+    configure_uploads(app, audios)
+    patch_request_class(app)
 
     from app.main import main
     app.register_blueprint(main)

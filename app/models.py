@@ -43,3 +43,16 @@ class Theme(db.Model):
 
     def __repr__(self):
         return '<Theme: {}>'.format(self.theme)
+
+
+class Audio(db.Model):
+    __tablename__ = 'audio'
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String)
+    description = db.Column(db.String)
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    audio_filename = db.Column(db.String, default=None, nullable=True)
+    audio_url = db.Column(db.String, default=None, nullable=True)
+
+    def __repr__(self):
+        return '<Audio: {} Timestamp: {}>'.format(self.title, self.timestamp)
