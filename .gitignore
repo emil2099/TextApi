@@ -5,6 +5,9 @@
 data/
 *.sqlite
 
+# Google key
+app/static/speech-to-text-f40318fcbc23.json
+
 # Project stuff
 .env
 venv/
