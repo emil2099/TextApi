@@ -1,26 +1,25 @@
 {% extends "base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
-{% set active_page = "classify" %}
+{% set active_page = "speech" %}
 
 {% block title %}Text Classification{% endblock %}
 
 {% block page_content %}
-<!--<div class="container"> -->
     <div class="page-header">
-        <h1 class="h1 d-inline-block display">Text classification</h1><span class="badge badge-pill badge-danger align-top">Alpha</span>
-        <p class="lead">Text classification API allows granular analysis of themes and sentiment.</p>
-        <p  class="d-none d-md-block">Our algorithm is different from your typical theme classifier in a way that allows to quickly define themes and concepts
-        using a few words - no tagging and labelling required. This is is important as training data is often difficult
-        to obtain and training labels don't always match the classification task in hand.</p>
-        <p  class="d-none d-md-block">In this demo the classifier has been trained to understand the language of banking. It can take customer
-        feedback or complaints and classify them by customer channel, product and root cause</p>
-        <p><strong>Themes in this demo:</strong> online, mobile, branch, telephony, staff, processes, credit card, debit card, lending, overdraft </p>
+        <h1 class="h1 d-inline-block display">Speech recognition</h1>
+        <p class="lead">Getting better understanding of your conversation with customers</p>
+        <p  class="d-none d-md-block">XYZ - text.</p>
+        <p  class="d-none d-md-block">XYZ - text.</p>
+        <p class="lead">Sample 1 - Customer enquiry call - EN-GB regional accent</p>
+        <audio controls controlsList="nodownload">
+            <source src="{{ url_for('static', filename='wav/demo-sample-1-short.wav') }}", type="audio/wav">
+        </audio>
+        <a class="btn btn-primary py-3 px-4 ml-3 align-top" href="{{ url_for('main.speech_analyse',filename='wav/demo-sample-1-short.wav') }}" role="button">Analyse</a>
+        <p class="lead mt-3">Sample 2 - Customer complaint call - EN-US accent</p>
+        <audio controls controlsList="nodownload">
+            <source src="{{ url_for('static', filename='wav/demo-sample-2-short.wav') }}", type="audio/wav">
+        </audio>
+        <a class="btn btn-primary py-3 px-4 ml-3 align-top" href="{{ url_for('main.speech_analyse',filename='wav/demo-sample-2-short.wav') }}" role="button">Analyse</a>
     </div>
-<!--</div> -->
-{{ wtf.quick_form(form) }}
-
-{% include '_texts.html' %}
-
-<br>Review <a href="/history">previous submissions</a>
 
 {% endblock %}

@@ -2,6 +2,7 @@ import io
 import os
 
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'C:/Users/Ekalimullin/Desktop/Python Projects/flask_api/app/static/speech-to-text-f40318fcbc23.json'
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'C:/Users/Ekalimullin/Desktop/Python Projects/flask_api/app/static/speech-to-text-1543854082123-6553574168d8.json'
 
 # Imports the Google Cloud client library
 from google.cloud import speech
@@ -24,7 +25,8 @@ speech_config = types.RecognitionConfig(
     language_code='en-US',
     use_enhanced=True,
     # A model must be specified to use enhanced model.
-    model='phone_call')
+    model='phone_call',
+    enable_automatic_punctuation=True)
 
 # Detects speech in the audio file
 response = client.recognize(speech_config, audio)
