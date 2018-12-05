@@ -7,10 +7,12 @@ data/
 
 # Project stuff
 .env
+venv/
 logs/
 sample_sentence
 .ebextensions/
 .ebignore
+textapi-db-admin/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
