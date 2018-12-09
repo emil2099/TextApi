@@ -39,7 +39,8 @@ speech_config = types.RecognitionConfig(
     language_code='en-US',
     use_enhanced=True,
     # A model must be specified to use enhanced model.
-    model='phone_call')
+    model='phone_call',
+    enable_automatic_punctuation=True)
 
 
 def create_app(config_name):

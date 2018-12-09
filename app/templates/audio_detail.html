@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% set active_page = "audio" %}
+
+{% block title %}Speech Recognition = Detail{% endblock %}
+
+{% block page_content %}
+    <div class="page-header">
+        <h1 class="h1 d-inline-block display">{{ audio.title }}</h1>
+        <p>{{ audio.description }}</p>
+        <p>Added on: {{ audio.timestamp }}</p>
+        <audio controls controlsList="nodownload">
+            <source src="{{ audio.url }}", type="audio/wav">
+        </audio>
+        <form action="{{ url_for('main.delete_audio', id=audio.id) }}" method=post class="delete-entry">
+              <input type="submit" value="Delete" class="btn btn-danger py-2 px-4 mt-2 mb-3"/>
+        </form>
+        <h1 class="h1 d-inline-block display">Speech analysis</h1>
+        {% if audio.status=="Completed" %}
+            <span class="badge badge-pill badge-success align-top">{{ audio.status }}</span>
+        {% elif audio.status=="Error" %}
+            <span class="badge badge-pill badge-danger align-top">{{ audio.status }}</span>
+        {% else %}
+            <span class="badge badge-pill badge-secondary align-top">{{ audio.status }}</span>
+        {% endif %}
+        <p>{{ audio.transcript }}</p>
+    </div>
+
+{% if audio.text.sentences %}
+    <h1 class="h1 display">Themes and reasons</h1>
+
+    {% for theme in audio.text.sentences[0].themes %}
+        <button type="button" class="btn btn-success mb-1">{{ theme.theme }} <span class="badge badge-light">{{ "{:.2f}".format(theme.score) }}</span></button>
+    {% endfor %}
+
+    <h1 class="h1 display mt-3">Sentiment</h1>
+    {% if audio.text.sentences[0].sentiment %}
+    <p>
+        {% if audio.text.sentences[0].sentiment > 0.33 %}
+            <button type="button" class="btn btn-success">Positive <span class="badge badge-light">{{ "{:.2f}".format(audio.text.sentences[0].sentiment) }}</span></button>
+        {% elif audio.text.sentences[0].sentiment >= -0.33 %}
+            <button type="button" class="btn btn-secondary">Neutral <span class="badge badge-light">{{ "{:.2f}".format(audio.text.sentences[0].sentiment) }}</span></button>
+        {% else %}
+            <button type="button" class="btn btn-danger">Negative <span class="badge badge-light">{{ "{:.2f}".format(audio.text.sentences[0].sentiment) }}</span></button>
+        {% endif %}
+    {% endif %}
+
+    <h1 class="h1 d-inline-block display mt-3">6 pillars</h1>
+    <p>6 pillars analysis is available in production systems.</p>
+{% endif %}
+{% endblock %}

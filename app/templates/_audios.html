@@ -1,0 +1,18 @@
+<section class="result">
+    <h1 class="h1 d-inline-block display">{{ audio.title }}</h1>
+        {% if audio.status=="Completed" %}
+            <span class="badge badge-pill badge-success align-top">{{ audio.status }}</span>
+        {% elif audio.status=="Error" %}
+            <span class="badge badge-pill badge-danger align-top">{{ audio.status }}</span>
+        {% else %}
+            <span class="badge badge-pill badge-secondary align-top">{{ audio.status }}</span>
+        {% endif %}
+        <br>
+        <div name="controls">
+        <audio controls controlsList="nodownload">
+            <source src="{{ audio.url }}", type="audio/wav">
+        </audio>
+        <a class="btn btn-primary py-2 px-4 ml-2 mt-2 align-top" href="{{ url_for('main.audio_detail', id=audio.id) }}" role="button">See results</a>
+        </div>
+</section>
+

@@ -101,14 +101,19 @@ class ThemeClassifier:
         norm_text = utils.to_unicode(norm_text).split()
         return norm_text
 
-    def _get_sentences(self, text):
+    def _get_sentences(self, text, split_sentences):
         doc = self.nlp(text)
         sentences = []
 
-        for sentence in doc.sents:
-            words = self._normalize_text(str(sentence))
+        if split_sentences:
+            for sentence in doc.sents:
+                words = self._normalize_text(str(sentence))
+                words = self.phrase_transformer[words]
+                sentences.append(self.Sentence(str(sentence), words))
+        else:
+            words = self._normalize_text(str(doc))
             words = self.phrase_transformer[words]
-            sentences.append(self.Sentence(str(sentence), words))
+            sentences.append(self.Sentence(str(doc), words))
 
         return sentences
 
@@ -148,8 +153,8 @@ class ThemeClassifier:
         punctuation = (',', '.', '-', ':', ';', ')', '(')
         return [w for w in tokens if w not in self._stop_words and w not in punctuation]
 
-    def predict(self, text):
-        sentences = self._get_sentences(text)
+    def predict(self, text, split_sentences=True):
+        sentences = self._get_sentences(text, split_sentences)
 
         result = []
 

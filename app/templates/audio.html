@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% import "_macros.html" as macros %}
+{% set active_page = "audio" %}
+
+{% block title %}Speech Recognition{% endblock %}
+
+{% block page_content %}
+
+    <div class="page-header">
+        <h1 class="h1 d-inline-block display">Speech Recognition</h1>
+        <p class="lead">You can now understand customer interactions by leveraging the power of AI.</p>
+        <p  class="d-none d-md-block">Customer interactions is what drives the business forward.
+            At the same time, Monitoring of customer interactions is expensive and time consuming process.
+            We have leveraged the power of AI to deliver a solution that helps to understand call reason,
+            document the interaction and assess the quality of customer experience - at scale.</p>
+        <p><strong><a href="/audio-upload">Why not try with your own data?</a></strong></p>
+    </div>
+    <div>
+        {% for audio in audios %}
+        {% include '_audios.html' %}
+        {% endfor %}
+    </div>
+
+{% if pagination.pages > 1 %}
+    <div class="pagination">
+        {{ macros.pagination_widget(pagination, '.classification_history') }}
+    </div>
+{% endif %}
+
+{% endblock %}

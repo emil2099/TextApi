@@ -10,7 +10,7 @@ class Config:
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'data.sqlite')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_COMMIT_ON_TEARDOWN = True
-    TEXTS_PER_PAGE = int(os.environ.get('TEXTS_PER_PAGE'))
+    TEXTS_PER_PAGE = 10
 
     # app.config['MODEL'] = 'data/lbg_culture_prop_w2v_cg,d300,n5,w10,mc2,s0.001,t4'
     # app.config['MODEL_PHRASER'] = 'data/culture_prop_phraser_bigram-npmi'
@@ -50,6 +50,7 @@ class ProductionConfig(Config):
 class ElasticBeanstalkConfig(Config):
     SQLALCHEMY_DATABASE_URI = os.environ.get('SQLALCHEMY_DATABASE_URI') or \
         'sqlite:///' + os.path.join(basedir, 'data.sqlite')
+    os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = "/tmp/speech-to-text-1543854082123-6553574168d8.json"
 
 config = {
     'development': DevelopmentConfig,
