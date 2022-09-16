@@ -31,7 +31,7 @@ idna==2.6
 itsdangerous==0.24
 Jinja2==2.10
 jmespath==0.9.3
-mako==1.0.7
+mako==1.2.2
 MarkupSafe==1.0
 msgpack-numpy==0.4.1
 msgpack-python==0.4.8
